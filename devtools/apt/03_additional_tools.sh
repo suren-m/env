@@ -13,6 +13,11 @@ rm -rf ./hub-linux-amd64-2.14.2
 go get -u github.com/gokcehan/lf
 go get github.com/jesseduffield/lazygit
 
+# hey for load testing
+wget -O hey https://storage.googleapis.com/hey-release/hey_linux_amd64
+chmod +x hey
+sudo mv hey /usr/local/bin
+
 # Rust based tools
 cargo install bat
 cargo install ripgrep

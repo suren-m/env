@@ -17,6 +17,8 @@ git fonts-powerline
 
 # Networking stuff
 sudo apt install -y net-tools dnsutils whois traceroute
+# ab
+sudo apt install -y apache2-utils
 
 # workloads
 sudo apt install -y cron
