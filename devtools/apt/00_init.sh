@@ -24,12 +24,19 @@ sudo apt install -y cron
 # fun
 sudo apt install -y figlet cmatrix 
 
+# zsh
+sudo apt install -y zsh
+
+# For debian
+# sudo apt-get install software-properties-common
+
 # tools to remember
 # ldd type
 # bc wc
 # tac 
-# diff whatis
+# diff whatis whereis
 # free -h
-# .. dd
+# .. dd dircolors
+# strip
 
 printf "\n...done...\n"
