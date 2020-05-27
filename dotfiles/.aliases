@@ -1,0 +1,13 @@
+alias home='cd ~/'
+
+# for codespaces / vs online
+alias home='cd ~/workspace'
+
+# programs
+alias lg='lazygit'
+alias k='kubectl'
+
+# directories
+alias repos='cd ~/repos'
+alias demos='cd ~/demos'
+alias labs='cd ~/labs'
