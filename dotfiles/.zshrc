@@ -1,6 +1,9 @@
 source ~/.aliases
 # export LS_COLORS="$(vivid generate molokai)"
 
+# export PATH=$PATH:$HOME/.cargo/bin
+# export PATH=$PATH:~/go/bin
+
 # Use lf to switch directories and bind it to ctrl-o
 lfcd () {
     tmp="$(mktemp)"

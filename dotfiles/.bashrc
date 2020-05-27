@@ -3,6 +3,9 @@ PS1='\[\]\[\]\u\[\]:\[\]\w\[\]$ \n'
 # Add Rust to $PATH from .bashrc (if not done already)
 #export PATH="$HOME/.cargo/bin:$PATH"
 
+export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$PATH:~/go/bin
+
 lg()
 {
     export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
