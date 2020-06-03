@@ -1,0 +1,208 @@
+#!/bin/bash
+
+# set keyboard to UK
+# https://wiki.archlinux.org/index.php/Linux_console/Keyboard_configuration
+localectl set-keymap --no-convert uk 
+
+# If installing on bare metal laptop with wifi. Follow instructions
+# wifi-menu
+
+# check the interface
+# ip a 
+
+# optional: edit /etc/pacman.d/mirrorlist if needed.
+# sync packages and check speed
+pacman -Syyy
+
+# check if you need uefi.
+# If below returns a list of files, then uefi is needed.
+ls /sys/firmware/efi/efivars
+
+# Partitions. Pick a tool of choice
+# take note of target disk
+lsblk 
+
+fdisk -l 
+
+# choose the correct disk. In this case, /dev/sda (from hyper-v)
+fdisk /dev/sda
+
+# do a "p" for print
+
+# Here, we use EFI method and GPT partitioning style
+g
+# check
+p
+
+# create new partition
+n
+# go with default partition number of first sector.
+#Last Sector: (for EFI)
++500M
+
+# Remove signature if needed (y)
+
+# Set type for the partition. List it if needed
+# L - 1 for EFI
+t
+1
+
+# New partition for Root
+n
+# for last sector
++30G
+
+# finally for home directory
+n
+# go with defaults
+
+# write and check 
+w
+lsblk
+
+# Format the partitions
+mkfs.fat -F32 /dev/sda1
+
+mkfs.ext4 /dev/sda1
+mkfs.ext4 /dev/sda2
+
+# Mount the partition
+mount /dev/sda2 /mnt
+
+# Make home dir
+mkdir /mnt/home
+mount /dev/sda3 /mnt/home
+
+# Run Mount and verify the created mounts
+mount
+df -h
+
+# Create etc
+mkdir /mnt/etc
+
+# place it in fstab via genfstab
+genfstab -U -p /mnt >> /mnt/etc/fstab
+cat /mnt/etc/fstab
+# you should see the recently created mounts
+
+#Run pacstrap.
+pacstrap -i /mnt base
+
+# Once the packages are installed, connect to in-progress arch installation
+# using chroot
+arch-chroot /mnt
+
+# Install both linux kernels and their headers for flexibility
+pacman -S linux-lts linux-lts-headers linux linux-headers
+
+# Press enter and let it install
+
+# Install a text editor.
+pacman -S nano
+
+# Install optional tools
+pacman -S openssh base-devel
+
+# Enable sshd. This will create symlinks
+systemctl enable sshd
+
+# Install network specific tools and optionally wifi specific ones as well
+pacman -S networkmanager wpa_supplicant wireless_tools netctl
+
+systemctl enable NetworkManager
+
+# Install dialog to display boxes from shell scripts
+pacman -S Dialog
+
+# Generate initial RAM disk for linux kernel
+mkinitcpio -p linux
+
+# And the same for lts packages
+mkinitcpio -p linux-lts
+
+# Configure locale settings. Find and uncomment the required locale
+# en_UK.UTF-8 UTF-8
+nano /etc/locale.gen
+locale-gen
+
+# set password for root and create a user as well
+passwd
+
+useradd -m -g users -G wheel <username>
+passwd <username>
+
+# make sure sudo is installed.
+which sudo
+# should return /usr/bin/sudo. If not, install via pacman
+
+
+set default text editor temporarily to nano
+EDITOR=nano visudo
+
+# uncomment to allow members of group wheel to execute any command
+
+# Install grub and its elper tools .
+# Grub is still good for tools like timeshare and stuff
+pacman -S grub efibootmgr dosfstools os-prober mtools
+
+
+# set up directory for EFI
+
+mkdir /boot/EFI
+
+# We haven't mounted the first partition yet.
+
+mount /dev/sda1 /boot/EFI
+
+# Intall bootloader
+# For bios based? - grub-install --target=i386-pc /dev/sda and then grub-mkconfig -o /boot/grub/grub.cfg
+# below one works in 2020.
+grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
+
+# below gives file already exists.
+# mkdir /boot/grub/locale
+cp /usr/share/locale/en@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
+# below should find linux and linux-lts kernels
+grub-mkconfig -o /boot/grub/grub.cfg
+
+# swap files optional but highly recommended.
+# here we create swapfile instead of swap partition.
+# it's easy to delete and recreate swapfile if need to increase size.
+# with swap partition, we need to adjust it.
+fallocate -l 2G /swapfile
+chmod 600 /swapfile
+mkswap /swapfile
+
+# Backup fstab
+cp /etc/fstab /etc/fstab.bak
+
+echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab
+# there should be three items now in fstab
+cat /etc/fstab
+
+# optional: microcodes
+# pacman -S intel-ucode (or amd-ucode)
+# optional: xorg -> do this later
+# optional: videocard drivers -> do this later as well. (mesa) or nvidia nvidia-utils nvidia-lts nvidia-lts (For nvidia graphics)
+# optioanl: virtualbox-guests-utils-xf86-video-vmware - only for virtualbox vm
+
+# conf
+# nano /etc/locale.conf
+# LANG=en-GB.UTF-8
+
+# Timezone
+# ls /usr/share/zoneinfo/
+# ln -sf /usr/share/zoneinfo/GB /etc/localtime
+
+#Hostname - give the machine a hostname
+# nano /etc/hostname
+
+# exit and reboot
+exit
+# expected target busy errors
+umount -a
+poweroff
+
+# make sure to create checkpoints, backups, etc
+
+# start
