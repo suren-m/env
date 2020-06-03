@@ -30,3 +30,6 @@ sudo netplan apply
  sudo dhclient -r
  sudo dhclient 
  ```
+
+#### From windows
+update the hosts file for more convenience (run notepad as admin)
