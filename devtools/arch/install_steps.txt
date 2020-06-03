@@ -206,3 +206,19 @@ poweroff
 # make sure to create checkpoints, backups, etc
 
 # start
+
+# Install yay
+
+# For Dwm
+
+#xorg 
+
+#libx11-dev
+#libxft-dev
+#libxext-dev
+#libxinerama-dev
+
+# libxcomposite-dev
+
+# xrdp
+# xrdp-git
