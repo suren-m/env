@@ -21,5 +21,6 @@ network:
         addresses: [8.8.8.8,8.8.4.4] # google dns
   version: 2
 
-
+# apply the changes and reboot to check
+sudo netplan apply
 ```
