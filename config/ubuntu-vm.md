@@ -24,3 +24,9 @@ network:
 # apply the changes and reboot to check
 sudo netplan apply
 ```
+
+#### when using dhcp, to release and get new ip, use below
+```
+ sudo dhclient -r
+ sudo dhclient 
+ ```
