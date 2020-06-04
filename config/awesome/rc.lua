@@ -49,7 +49,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+beautiful.init("~/.config/awesome/themes/gtk/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator"
@@ -472,7 +472,7 @@ awful.rules.rules = {
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen,
-		     opacity = 0.5
+		     opacity= 0.95
      }
     },
 
@@ -581,11 +581,12 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
+-- custom settings
+
 -- Gaps
--- beautiful.useless_gap = 5
+beautiful.useless_gap = 5
 
 -- Autostart
-awful.spawn.with_shell("xcompmgr")
+awful.spawn.with_shell("xcompgmr")
 
 -- }}}
---
