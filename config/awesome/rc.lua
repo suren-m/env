@@ -472,7 +472,7 @@ awful.rules.rules = {
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen,
-		     opacity= 0.95
+		     opacity = 0.8
      }
     },
 
@@ -584,9 +584,9 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- custom settings
 
 -- Gaps
-beautiful.useless_gap = 5
+-- beautiful.useless_gap = 5
 
 -- Autostart
-awful.spawn.with_shell("xcompgmr")
+awful.spawn.with_shell("xcompmgr")
 
 -- }}}
