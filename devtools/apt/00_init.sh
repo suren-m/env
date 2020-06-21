@@ -5,7 +5,7 @@
 sudo apt update -y && sudo apt upgrade -y
 
 # gcc llvm
-sudo apt install -y build-essential llvm clang lldb
+sudo apt install -y build-essential llvm clang lldb cmake python3-dev
 
 # everyday tools
 sudo apt install -y nano vim neovim tmux \
