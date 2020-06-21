@@ -26,6 +26,7 @@ cargo install hyperfine
 cargo install pastel
 cargo install hexyl
 cargo install vivid
+cargo install tokei
 
 # config for vivid
 mkdir $HOME/.config/vivid
