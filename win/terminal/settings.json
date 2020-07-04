@@ -37,9 +37,9 @@
 
             "cursorShape": "vintage",
             "cursorHeight": 25,
-            "cursorColor": "#d81b60",
+            "cursorColor": "#d81b60",           
 
-            "colorScheme": "One Half Light" // Campbell Solarized Tango One Half Dark/Light
+            "colorScheme": "One Half Dark" // Campbell Solarized Tango One Half Dark/Light
         },
         "list":
         [
@@ -49,8 +49,25 @@
                 "name": "Ubuntu-20.04",
                 "source": "Windows.Terminal.Wsl",
                 "startingDirectory" : "//wsl$/Ubuntu-20.04/home/<user>",
-                "colorScheme": "custom"
+                "icon": "%USERPROFILE%\\Pictures\\logos\\ubuntu.png"
+                // "colorScheme": "custom"          
+                
+                // "useAcrylic": true,
+                // "acrylicOpacity": 0.5,
+
+                //"backgroundImage": "%USERPROFILE%\\Pictures\\gradients\\demo.jpg"
+                //"backgroundImageOpacity": 0.1              
+
+               
             },
+            {
+                "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
+                "hidden": false,
+                "name": "Debian",
+                "source": "Windows.Terminal.Wsl",
+                "startingDirectory" : "//wsl$/Debian/home/<user>",
+                "icon": "%USERPROFILE%\\Pictures\\logos\\debian.png"
+            },            
             {
                 // Make changes here to the powershell.exe profile.
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
@@ -59,7 +76,7 @@
                 "colorScheme": "Campbell Powershell",
                 "startingDirectory" : "C:\\",
                 "hidden": false
-            },
+            },            
             {
                 // Make changes here to the cmd.exe profile.
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
@@ -72,6 +89,12 @@
                 "hidden": false,
                 "name": "Azure Cloud Shell",
                 "source": "Windows.Terminal.Azure"
+            },
+            {
+                "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
+                "hidden": false,
+                "name": "Debian",
+                "source": "Windows.Terminal.Wsl"
             }
         ]
     },
@@ -84,11 +107,11 @@
             "cursorColor": "#d81b60",
             "selectionBackground": "#ff5c8d",
         
-            "background" : "#560027",
-            "foreground" : "#fff8e1",
+            "background" : "#FFEFBA",
+            "foreground" : "#5D4157",
         
             "black" : "#0C0C0C",
-            "blue" : "#0037DA", // bash comments on vi
+            "blue" : "#0037DA", // bash comments on vi. echo outputs?
             "cyan" : "#3A96DD",
             "green" : "#ff9e80", // dir highlighting (tmp dir)
             "purple" : "#881798",
@@ -98,12 +121,12 @@
             "brightBlack" : "#ff9e80", // nvim - status bar text
             "brightBlue" : "#455a64", // directories
             "brightCyan" : "#ff3d00", // lib, bin, sbin directories. bash comments on nvim
-            "brightGreen" : "#03a9f4", // Prompt and executable script
-            "brightPurple" : "#B4009E", // nvim - strings
+            "brightGreen" : "#FFA17F", // Prompt and executable script
+            "brightPurple" : "#ff9e80", // nvim - strings. Terminal - .png files 
             "brightRed" : "#E74856", // .deb files
             "brightWhite" : "#F2F2F2", // nvim - status bar
             "brightYellow" : "#F9F1A5" // nvim - bash - for, clear, read 
-        }
+        }       
     ],
 
     // Add custom keybindings to this array.
