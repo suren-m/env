@@ -15,7 +15,16 @@ $update && $upgrade
 
 chmod +x ./scripts/*.sh
 
-./scripts/tools.sh
+# ./scripts/tools.sh
 
-./scripts/docker.sh $arch
+# ./scripts/docker.sh $arch
 
+# ./scripts/rust.sh 
+
+# ./scripts/deno.sh
+
+# ./scripts/github.sh
+
+# ./scripts/kvm.sh
+
+./scripts/go.sh $arch
