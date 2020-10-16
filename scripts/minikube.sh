@@ -6,4 +6,5 @@ sudo install minikube /usr/local/bin/
 
 # minikube start
 
-https://golang.org/dl/goVERSION?m=text.linux-amd64.tar.gz
+
+# https://golang.org/dl/goVERSION?m=text.linux-amd64.tar.gz
